@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<set>
+#include<algorithm>
 #include<iterator>
 using namespace std;
 
@@ -22,7 +23,15 @@ class Widgets{
 
     }
 
-};
+    void find_widget(const set<string>& itr, string widget) {
+        auto id = itr.find(widget);  // Correct usage of set::find
+        if (id != itr.end()) {  // Check if the widget is found
+            cout << *id << " widget found in the set." << endl;
+        } else {
+            cout << widget << " not found in the set." << endl;
+        }
+    }
+ };
 
 
 int main(){
@@ -42,6 +51,7 @@ int main(){
     mywidget.display(dynamic_widgets , "These are the dynamic widgets :");
     mywidget.combine(dynamic_widgets , static_widgets , Combined_widgets);
     mywidget.display(Combined_widgets , "These are the combined widgets :");
+    mywidget.find_widget(static_widgets , "Tachometer");
 
 
     return 0;
